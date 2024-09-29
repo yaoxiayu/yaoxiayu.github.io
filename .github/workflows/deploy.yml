@@ -4,7 +4,7 @@ name: Deploy Hexo site
 on:
   push:
     branches:
-      - main  # 监听 main 分支
+      - Hexo  # 监听 main 分支
 
 jobs:
   build:
@@ -32,5 +32,7 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}  # GitHub 自动提供的身份验证 token
           publish_dir: ./public  # 指定要推送的文件夹
+          publish_branch: main  # 替换为你要部署的分支名称
           destination_dir: ""  # 你可以自定义推送的文件夹，如果为空，直接推送到仓库根目录
           external_repository: yaoxiayu/yaoxiayu.github.io  # 替换为你的部署仓库名称，例如 username/username.github.io
+          allow_empty_commit: true # 是否允许空提交
