@@ -1,0 +1,36 @@
+# Heox 从Hexo库中自动部署到main
+name: Deploy Hexo site
+
+on:
+  push:
+    branches:
+      - main  # 监听 main 分支
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Hexo repository
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Install Hexo and dependencies
+        run: |
+          npm install
+          npm install hexo-cli -g
+
+      - name: Build Hexo site
+        run: hexo generate  # 生成静态网站文件
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}  # GitHub 自动提供的身份验证 token
+          publish_dir: ./public  # 指定要推送的文件夹
+          destination_dir: ""  # 你可以自定义推送的文件夹，如果为空，直接推送到仓库根目录
+          external_repository: yaoxiayu/yaoxiayu.github.io  # 替换为你的部署仓库名称，例如 username/username.github.io
