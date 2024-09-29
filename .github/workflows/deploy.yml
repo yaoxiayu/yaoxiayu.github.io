@@ -27,6 +27,9 @@ jobs:
       - name: Build Hexo site
         run: hexo generate  # 生成静态网站文件
 
+      - name: Add CNAME
+        run: echo 'xy.334456.xyz' > public/CNAME  # 添加 CNAME 文件
+
       - name: Deploy to GitHub Pages (main branch)
         uses: peaceiris/actions-gh-pages@v3
         with:
