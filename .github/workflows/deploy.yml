@@ -27,7 +27,7 @@ jobs:
       - name: Build Hexo site
         run: hexo generate  # 生成静态网站文件
 
-      - name: Deploy to GitHub Pages
+      - name: Deploy to GitHub Pages (main branch)
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.PERSONAL_TOKEN }}  # 替换为你的 GitHub 个人访问令牌
