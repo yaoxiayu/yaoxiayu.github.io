@@ -30,9 +30,6 @@ jobs:
       - name: Deploy to GitHub Pages (main branch)
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.PERSONAL_TOKEN }}  # 替换为你的 GitHub 个人访问令牌
-          publish_dir: ./public  # 指定要推送的文件夹
-          publish_branch: main  # 替换为你要部署的分支名称
-          destination_dir: ""  # 你可以自定义推送的文件夹，如果为空，直接推送到仓库根目录
-          external_repository: yaoxiayu/yaoxiayu.github.io  # 替换为你的部署仓库名称，例如 username/username.github.io
-          allow_empty_commit: true # 是否允许空提交
+          personal_token: ${{ secrets.PERSONAL_TOKEN }}  # 确保这里使用的是 personal_token 而不是 github_token
+          publish_branch: main
+          publish_dir: ./public
